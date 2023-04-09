@@ -1,12 +1,8 @@
 #include <Arduino.h>
+#include"config.h"
 #ifndef US_H
 #define US_H
-#define echopin_A A3
-#define trigpin_A A2
-#define echopin_B A1
-#define trigpin_B A0
-#define echopin_C 12
-#define trigpin_C 13
+
 
 class UL_Sensors {
 private:

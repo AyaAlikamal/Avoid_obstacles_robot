@@ -1,8 +1,8 @@
 #include <Arduino.h>
+#include"config.h"
 #ifndef Motio_H
 #define Motion_H
-#define Motor1_Pin 12
-#define Motor2_pin 13
+
 
 class Motion {
 private:
