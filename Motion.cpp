@@ -1,37 +1,52 @@
 #include "Motion.h"
-
 void Motion::init() {
-  pinMode(Motor1_Pin, OUTPUT);
-  pinMode(Motor2_pin, OUTPUT);
-  analogWrite(Motor1_Pin, strat_speed);
-  analogWrite(Motor1_Pin, strat_speed);
+  pinMode(Motor1_right_pin, OUTPUT);
+  pinMode(Motor2_right_pin, OUTPUT);
+  pinMode(Motor1_left_pin, OUTPUT);
+  pinMode(Motor2_left_pin, OUTPUT);
+  analogWrite(Motor1_right_pin, 0);
+  analogWrite(Motor2_right_pin, 0);
+  analogWrite(Motor1_left_pin, 0);
+  analogWrite(Motor2_left_pin, 0);
 };
-void Motion::setMotor_1() {
-  analogWrite(Motor1_Pin, motor_speed_1);
+void Motion::Forword() {
+  digitalWrite(Motor1_right_pin, HIGH);
+  analogWrite(Motor1_right_pin, Speed);
+  digitalWrite(Motor2_right_pin, HIGH);
+  analogWrite(Motor2_right_pin, Speed);
 };
-void Motion::setMotor_2() {
-  analogWrite(Motor2_pin, motor_speed_2);
+void Motion::Backword() {
+  digitalWrite(Motor1_left_pin, HIGH);
+  analogWrite(Motor1_left_pin, Speed);
+  digitalWrite(Motor2_left_pin, HIGH);
+  analogWrite(Motor2_left_pin, Speed);
 };
-int Motion::Set_ul_data(int ul_data) {
+void Motion::Right() {
+  digitalWrite(Motor1_left_pin, HIGH);
+  analogWrite(Motor1_left_pin, Speed);
+  digitalWrite(Motor2_left_pin, LOW);
+  analogWrite(Motor2_left_pin, Speed);
+};
+void Motion::Left() {
+  digitalWrite(Motor1_left_pin, LOW);
+  analogWrite(Motor1_left_pin, Speed);
+  digitalWrite(Motor2_left_pin, HIGH);
+  analogWrite(Motor2_left_pin, Speed);
+};
+void Motion::Stop() {
+  analogWrite(Motor1_right_pin, 0);
+  analogWrite(Motor2_right_pin, 0);
+  analogWrite(Motor1_left_pin, 0);
+  analogWrite(Motor2_left_pin, 0);
+};
+void Motion::Final_Direction(int ul_data) {
   if (ul_data == 1) {
-    motor_speed_1 = 150;
-    motor_speed_2 = 230;
-    setMotor_1();
-    setMotor_2();
-  } else if (ul_data == 2) {
-    motor_speed_1 = 230;
-    motor_speed_2 = 230;
-    setMotor_1();
-    setMotor_2();
+    Forword();
   } else if (ul_data == 3) {
-    motor_speed_1 = 230;
-    motor_speed_2 = 150;
-    setMotor_1();
-    setMotor_2();
+    Backword();
+  } else if (ul_data == 2 || ul_data == 4) {
+    Left();
   } else {
-    motor_speed_1 = 0;
-    motor_speed_2 = 0;
-    setMotor_1();
-    setMotor_2();
+    Stop();
   }
 };

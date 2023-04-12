@@ -1,23 +1,24 @@
 #include <Arduino.h>
-#include"config.h"
+#include "config.h"
 #ifndef Motio_H
 #define Motion_H
-
-
 class Motion {
 private:
-  void setMotor_1();
-  void setMotor_2();
+  void Forword();
+  void Backword();
+  void Right();
+  void Left();
+  void Stop();
 public:
-  int strat_speed;
+  int Speed;
   int motor_speed_1;
   int motor_speed_2;
   Motion() {
     this->motor_speed_1 = 0;
     this->motor_speed_2 = 0;
-    this->strat_speed = 120;
+    this->Speed = 80;
   };
   void init();
-  int Set_ul_data(int data);
+  void Final_Direction(int ul_data);
 };
 #endif

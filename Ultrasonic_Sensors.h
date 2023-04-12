@@ -3,7 +3,6 @@
 #ifndef US_H
 #define US_H
 
-
 class UL_Sensors {
 private:
   long duration_A, duration_B, duration_C;
@@ -11,10 +10,11 @@ private:
   void UL_SA();
   void UL_SB();
   void UL_SC();
+  int A_B_compare();
 public:
   UL_Sensors() {
   };
   void init();
-  int M_direction();
+  int Max_direction();
 };
 #endif
